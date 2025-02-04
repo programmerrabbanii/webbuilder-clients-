@@ -4,7 +4,7 @@ import hero from "../assets/hero-removebg-preview.png";
 
 const Bannar = () => {
   return (
-    <div className="hero bg-gray-900 h-[80%] text-white min-h-screen flex items-center">
+    <div className="hero  bg-gray-900 text-white min-h-screen flex items-center">
       <div className="container mx-auto flex flex-col-reverse lg:flex-row items-center px-6 lg:px-16">
         
         {/* Content Section (Right Side) */}
