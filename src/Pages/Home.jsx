@@ -3,6 +3,7 @@ import Bannar from '../Components/Bannar';
 import About from './About';
 import Services from './Services';
 import RecentWorks from '../Components/RecentWorks';
+import Team from '../Components/Team';
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             <About></About>
             <Services></Services>
             <RecentWorks></RecentWorks>
+            <Team></Team>
            
            
         </div>
