@@ -1,103 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { Menu, X } from "lucide-react"; // Icon for mobile menu
 
 const Navbar = () => {
-  const link = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive
-             
-              ? "border-b-2 border-blue-600 text-lg text-blue-600 pb-2"
-              : "text-gray-700 hover:text-blue-600"
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/about"
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
-              : "text-gray-700 hover:text-blue-600 text-lg"
-          }
-        >
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/process"
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
-              : "text-gray-700 hover:text-blue-600 text-lg"
-          }
-        >
-          Process
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/seven"
-          className={({ isActive }) =>
-            isActive
-              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
-              : "text-gray-700 hover:text-blue-600 text-lg"
-          }
-        >
-          Seven Reasons
-        </NavLink>
-      </li>
-    </>
-  );
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? "border-b-2 border-blue-500 text-blue-400 pb-1 transition-all duration-300"
+      : "text-white hover:text-blue-400 transition-all duration-300";
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-md p-4 px-6">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              {link}
-            </ul>
-          </div>
+    <nav className="bg-gray-900 text-white shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
           <Link to="/">
             <img className="h-10" src={logo} alt="Logo" />
           </Link>
+
+          {/* Desktop Menu */}
+          <ul className="hidden md:flex space-x-8 text-lg">
+            <li><NavLink to="/" className={linkClass}>Home</NavLink></li>
+            <li><NavLink to="/about" className={linkClass}>About</NavLink></li>
+            <li><NavLink to="/process" className={linkClass}>Process</NavLink></li>
+            <li><NavLink to="/seven" className={linkClass}>Seven Reasons</NavLink></li>
+          </ul>
+
+          {/* Contact Button */}
+          <Link to="/contact" className="hidden md:block bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-all duration-300">
+            Contact Us
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden focus:outline-none" onClick={toggleMenu}>
+            {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          </button>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{link}</ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn text-lg ">Contact Us</a>
-        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isOpen && (
+          <div className="md:hidden bg-gray-800 text-center py-4 rounded-md transition-all duration-300">
+            <ul className="space-y-4">
+              <li><NavLink to="/" className={linkClass} onClick={toggleMenu}>Home</NavLink></li>
+              <li><NavLink to="/about" className={linkClass} onClick={toggleMenu}>About</NavLink></li>
+              <li><NavLink to="/process" className={linkClass} onClick={toggleMenu}>Process</NavLink></li>
+              <li><NavLink to="/seven" className={linkClass} onClick={toggleMenu}>Seven Reasons</NavLink></li>
+              <li>
+                <Link to="/contact" className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition-all duration-300 inline-block" onClick={toggleMenu}>
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
-    </div>
+    </nav>
   );
 };
 
-export default Navbar
+export default Navbar;
