@@ -1,20 +1,65 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo.png"
+import { NavLink, Link } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
-    const link=<>
-    <li><Link to="/">Home</Link></li>
-    <li><Link to="/about">About</Link></li>
-    <li><Link to="/process">Process</Link></li>
-    <li><Link to="/seven">Seven Reasons</Link></li>
- 
-
-    
+  const link = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+             
+              ? "border-b-2 border-blue-600 text-lg text-blue-600 pb-2"
+              : "text-gray-700 hover:text-blue-600"
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
+              : "text-gray-700 hover:text-blue-600 text-lg"
+          }
+        >
+          About
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/process"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
+              : "text-gray-700 hover:text-blue-600 text-lg"
+          }
+        >
+          Process
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/seven"
+          className={({ isActive }) =>
+            isActive
+              ? "border-b-2 text-lg border-blue-600 text-blue-600 pb-2"
+              : "text-gray-700 hover:text-blue-600 text-lg"
+          }
+        >
+          Seven Reasons
+        </NavLink>
+      </li>
     </>
+  );
+
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 shadow-md p-4 px-6">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -37,23 +82,22 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-                {link}
+              {link}
             </ul>
           </div>
-          <Link to="/"><img className="h-10" src={logo} alt="" /></Link>
+          <Link to="/">
+            <img className="h-10" src={logo} alt="Logo" />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {link}
-          </ul> 
+          <ul className="menu menu-horizontal px-1">{link}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <a className="btn text-lg ">Contact Us</a>
         </div>
       </div>
-      ;
     </div>
   );
 };
 
-export default Navbar;
+export default Navbar
