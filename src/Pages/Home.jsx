@@ -4,6 +4,7 @@ import About from './About';
 import Services from './Services';
 import RecentWorks from '../Components/RecentWorks';
 import Team from '../Components/Team';
+import WhyChooseUs from '../Components/WhyChooseUs';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <Services></Services>
             <RecentWorks></RecentWorks>
             <Team></Team>
+            <WhyChooseUs></WhyChooseUs>
            
            
         </div>
